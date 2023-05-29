@@ -67,7 +67,7 @@ const Product = mongoose.model("Product", ProductSchema);
 // Order model
 const OrderSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  merchant: { type: mongoose.Schema.Types.ObjectId, ref: "Merchant" },
+  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
   details: { type: String },
   paymentStatus: { type: String },
   deliveryStatus: { type: String },
