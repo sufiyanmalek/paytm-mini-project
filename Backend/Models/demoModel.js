@@ -9,6 +9,21 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
+// ContactList model
+const ContactListSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  contacts: [
+    {
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      name: { type: String },
+      email: { type: String },
+      phone: { type: String },
+    },
+  ],
+});
+
+const ContactList = mongoose.model("ContactList", ContactListSchema);
+
 // Wallet model
 const WalletSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
@@ -31,14 +46,23 @@ const TransactionSchema = new mongoose.Schema({
 
 const Transaction = mongoose.model("Transaction", TransactionSchema);
 
-// Merchant model
-const MerchantSchema = new mongoose.Schema({
+// Category model
+const CategorySchema = new mongoose.Schema({
   name: { type: String, required: true },
-  contactInfo: { type: String },
-  businessDetails: { type: String },
+  description: { type: String },
 });
 
-const Merchant = mongoose.model("Merchant", MerchantSchema);
+const Category = mongoose.model("Category", CategorySchema);
+
+// Product model
+const ProductSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String },
+  price: { type: Number, required: true },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+});
+
+const Product = mongoose.model("Product", ProductSchema);
 
 // Order model
 const OrderSchema = new mongoose.Schema({
