@@ -10,6 +10,7 @@ export const loginUser = async (req, res) => {
     if (user) {
       const otp = Math.floor(Math.random() * 1000000);
       // twilioOTP(otp, req.body.phone);
+      console.log(otp);
       const userOtp = new userOtpModel({
         phone: req.body.phone,
         otp: otp,

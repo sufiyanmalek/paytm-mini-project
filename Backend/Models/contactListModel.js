@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // ContactList Schema
 const ContactListSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  userPhone: { type: String },
   contacts: [
     {
       userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
