@@ -1,3 +1,4 @@
+// import modules
 import { User } from "../Models/userModel.js";
 import joi from "joi";
 import bcrypt, { hash } from "bcrypt";
@@ -8,7 +9,7 @@ export const registerUser = async (req, res) => {
     const userSchema = joi.object({
       name: joi.string().required().min(3),
       email: joi.string().email().required(),
-      phone: joi.string().required().min(10).max(10),
+      phone: joi.string().required().length(10),
       password: joi.string().min(6).required(),
       address: joi.string().required(),
     });
@@ -36,6 +37,6 @@ export const registerUser = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };
