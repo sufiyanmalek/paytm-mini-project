@@ -11,15 +11,9 @@ export const getAllContacts = async (req, res) => {
     });
     if (!contactList) {
       const contactList = new ContactList({
+        userId: user._id.$oid,
         userPhone: user.phone,
-        contacts: [
-          {
-            userId: "6475700fbb713a7e456c84b0",
-            name: "Sufiyan Malek",
-            email: "sufiyanmalek.geek@gmail.com",
-            phone: "9978578666",
-          },
-        ],
+        contacts: [],
       });
       await contactList.save();
       res.status(200).json({
@@ -54,14 +48,9 @@ export const addContact = async (req, res) => {
         });
       } else {
         const contactList = new ContactList({
+          userId: user._id.$oid,
           userPhone: user.phone,
           contacts: [
-            {
-              userId: "6475700fbb713a7e456c84b0",
-              name: "Sufiyan Malek",
-              email: "sufiyanmalek.geek@gmail.com",
-              phone: "9978578666",
-            },
             {
               ...req.body,
             },

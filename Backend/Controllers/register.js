@@ -11,6 +11,7 @@ export const registerUser = async (req, res) => {
       email: joi.string().email().required(),
       phone: joi.string().required().length(10),
       password: joi.string().min(6).required(),
+      pin: joi.string().length(4).required(),
       address: joi.string().required(),
     });
 
@@ -30,8 +31,9 @@ export const registerUser = async (req, res) => {
         });
       } else {
         const password = await bcrypt.hash(req.body.password, 10);
+        const pin = await bcrypt.hash(req.body.pin, 10);
         console.log(password);
-        const newUser = new User({ ...req.body, password });
+        const newUser = new User({ ...req.body, password, pin });
         await newUser.save();
         res.status(200).send(newUser);
       }

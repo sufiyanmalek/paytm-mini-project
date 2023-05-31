@@ -3,6 +3,7 @@ import { connectToDB } from "./config/connectDB.js";
 import { register } from "./Routes/registerUser.js";
 import { login } from "./Routes/loginUser.js";
 import { contactList } from "./Routes/contactList.js";
+import { wallet } from "./Routes/wallet.js";
 
 // express app
 const app = express();
@@ -21,6 +22,9 @@ app.use(login);
 
 // Contacts
 app.use(contactList);
+
+// Wallet
+app.use(wallet);
 
 app.listen(3000, () => {
   console.log("server up and running on port 3000");
