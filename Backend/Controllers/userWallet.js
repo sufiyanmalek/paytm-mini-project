@@ -16,7 +16,6 @@ export const getWallet = async (req, res) => {
       await wallet.save();
       res.status(200).send(wallet);
     }
-    res.send(wallet);
   } catch (error) {
     res.status(500).send(error);
   }
